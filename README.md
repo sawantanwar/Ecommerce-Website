@@ -33,5 +33,3 @@ A full-stack e-commerce web application built using the MERN stack, featuring se
 
 ---
 
-## 📂 Project Structure
-
