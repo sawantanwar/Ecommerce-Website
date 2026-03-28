@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function OtpVerify() {
+  const BASE_URL = import.meta.env.VITE_API_URL;
   const [otp, setOtp] = useState("");
   const email = localStorage.getItem("email");
   const navigate = useNavigate();
