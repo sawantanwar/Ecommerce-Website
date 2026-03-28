@@ -7,7 +7,7 @@ function Login() {
   const [isAdminLogin, setIsAdminLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showForgot, setShowForgot] = useState(false); // 🔹 Forgot password toggle
-        const BASE_URL = import.meta.env.VITE_API_URL;
+  const BASE_URL = import.meta.env.VITE_API_URL;
 
 
   const navigate = useNavigate();

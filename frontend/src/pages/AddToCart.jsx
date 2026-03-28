@@ -45,7 +45,7 @@ const AddToCart = () => {
 
   const updateQuantity = async (productId, size, newQuantity) => {
     try {
-      await fetch(`http://localhost:5000/api/cart/update/${productId}`, {
+      await fetch(`${BASE_URL}/api/cart/update/${productId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ const AddToCart = () => {
 
   const removeItem = async (productId, size) => {
     try {
-      await fetch(`http://localhost:5000/api/cart/remove/${productId}?size=${size}`, {
+      await fetch(`${BASE_URL}/api/cart/remove/${productId}?size=${size}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,

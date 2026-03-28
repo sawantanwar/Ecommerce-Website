@@ -124,7 +124,7 @@ const handleSubmit = async (e) => {
                     rel="noopener noreferrer"
                     className="bg-green-500 text-white rounded-full p-4 shadow-lg hover:scale-105 transition"
                 >
-                    <FaWhatsapp size={24} />
+                    <FaWhatsapp size={20} />
                 </a>
             </div>
         </footer>

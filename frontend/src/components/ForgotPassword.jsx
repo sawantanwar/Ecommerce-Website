@@ -7,7 +7,7 @@ const ForgotPassword = () => {
   const [msg, setMsg] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-        const BASE_URL = import.meta.env.VITE_API_URL;
+  const BASE_URL = import.meta.env.VITE_API_URL;
 
 
   const navigate = useNavigate();
