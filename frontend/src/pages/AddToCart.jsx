@@ -44,34 +44,54 @@ const AddToCart = () => {
   }, [token]);
 
   const updateQuantity = async (productId, size, newQuantity) => {
-    try {
-      await fetch(`${BASE_URL}/api/cart/update/${productId}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ quantity: newQuantity, size }),
-      });
-      window.location.reload();
-    } catch (err) {
-      console.error("Error updating quantity:", err);
+    if (newQuantity <= 0) {
+      removeItem(productId, size);
+      return;
     }
-  };
+  try {
+    await fetch(`${BASE_URL}/api/cart/update/${productId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ quantity: newQuantity, size }),
+    });
+
+    // 🔥 Update UI without reload
+    setCart(prev =>
+      prev.map(item =>
+        item.productId._id === productId && item.size === size
+          ? { ...item, quantity: newQuantity }
+          : item
+      )
+    );
+
+  } catch (err) {
+    console.error("Error updating quantity:", err);
+  }
+};
 
   const removeItem = async (productId, size) => {
-    try {
-      await fetch(`${BASE_URL}/api/cart/remove/${productId}?size=${size}`, {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      window.location.reload();
-    } catch (err) {
-      console.error("Error removing item:", err);
-    }
-  };
+  try {
+    await fetch(`${BASE_URL}/api/cart/remove/${productId}?size=${size}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    
+    setCart(prev =>
+      prev.filter(item =>
+        !(item.productId._id === productId && item.size === size)
+      )
+    );
+
+  } catch (err) {
+    console.error("Error removing item:", err);
+  }
+};
 
   const total = Array.isArray(cart)
     ? cart.reduce((acc, item) => {
